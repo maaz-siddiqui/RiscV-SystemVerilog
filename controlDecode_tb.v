@@ -1,7 +1,7 @@
 // Code your testbench here
 // or browse Examples
-`timescale 1ns/1ns
-//`include "controlDecode.v"
+// `timescale 1ns/1ns
+// `include "controlDecode.v"
 module controlDecode_tb;
 initial begin
   $dumpfile("dump.vcd");
@@ -42,8 +42,7 @@ controlDecode controlDecode_1(
 
 
 initial begin
-  		#5
-  		rst_tb = 0;
+  		rst_tb = 1;
         R_tb = 1;
         I_tb = 0;
         L_tb = 0;
@@ -124,7 +123,7 @@ initial begin
         lui_tb = 1;
         aui_tb = 0;
         #5
-        R_tb = 1;
+        R_tb = 0;
         I_tb = 0;
         L_tb = 0;
         S_tb = 0;

@@ -8,64 +8,69 @@ module controlDecode(
   output logic [2:0] alu,
   output logic [3:0] aluSel
 );
-
-  if (rst) begin
+  
+always @( * ) begin
   if(R)begin
-      assign regWrite = 1;
-      assign opA = 2'b00;
-      assign opB = 1;
-      assign immSel = 2'b11;
-      assign alu = 3'b000;
+    assign regWrite = 1;
+    assign opA = 2'b00;
+    assign opB = 1;
+    assign immSel = 2'b11;
+    assign alu = 3'b000;
+    assign aluSel = 4'b0000;
+    assign store = 0;
+    assign memToReg = 0;
+    assign branch = 0;
+    assign nextPc = 2'b00;
   end
   if (I) begin
-      assign regWrite = 1;
-      assign opA = 2'b00;
-      assign alu = 3'b001;
-      assign immSel = 2'b11;
+    assign regWrite = 1;
+    assign opA = 2'b00;
+    assign alu = 3'b001;
+    assign immSel = 2'b11;
   end
   if (L) begin
-      assign regWrite = 1;
-      assign memToReg = 1;
-      assign alu = 3'b010;
+    assign regWrite = 1;
+    assign memToReg = 1;
+    assign alu = 3'b010;
   end
   if (Jr) begin
-      assign regWrite = 1;
-      assign opA = 2'b10;
-      assign nextPc = 2'b11;
-      assign alu = 2'b11;
-      assign aluSel = 3'b0111;
+    assign regWrite = 1;
+    assign opA = 2'b10;
+    assign nextPc = 2'b11;
+    assign alu = 2'b11;
+    assign aluSel = 3'b0111;
   end 
   if (S) begin
-      assign store = 1;
-      assign opB = 1;
-      assign immSel = 2'b01;
-      assign alu = 3'b100;
-      assign aluSel = 4'b0001;
+    assign store = 1;
+    assign opB = 1;
+    assign immSel = 2'b01;
+    assign alu = 3'b100;
+    assign aluSel = 4'b0001;
   end
   if (B) begin
-      assign branch = 1;
-      assign opB = 1;
-      assign immSel = 2'b11;
-      assign aluSel = 4'b0001; 
+    assign branch = 1;
+    assign opB = 1;
+    assign immSel = 2'b11;
+    assign aluSel = 4'b0001; 
   end
   if (aui) begin
-      assign regWrite = 1;
-      assign opB = 1;
-      assign immSel = 2'b10;
-      assign alu = 3'b110;
+    assign regWrite = 1;
+    assign opB = 1;
+    assign immSel = 2'b10;
+    assign alu = 3'b110;
   end
   if (lui) begin
-      assign regWrite = 1;
-      assign opA = 2'b11;
-      assign opB = 1;
-      assign immSel = 2'b10;
+    assign regWrite = 1;
+    assign opA = 2'b11;
+    assign opB = 1;
+    assign immSel = 2'b10;
   end
   if (J) begin
-     assign regWrite = 1;
-     assign opA = 2'b10;
-     assign immSel = 2'b11;
-     assign nextPc = 2'b01;
-     assign aluSel = 4'b1111;
+    assign regWrite = 1;
+    assign opA = 2'b10;
+    assign immSel = 2'b11;
+    assign nextPc = 2'b01;
+    assign aluSel = 4'b1111;
   end
- end
+end
 endmodule
