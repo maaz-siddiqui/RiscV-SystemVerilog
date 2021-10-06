@@ -9,7 +9,7 @@ $dumpvars(0,controlDecode_tb);
 
 end 
 
-logic R_tb,I_tb,L_tb,S_tb,B_tb,J_tb,Jr_tb,lui_tb,aui_tb,rst_tb;
+logic R_tb,I_tb,L_tb,S_tb,B_tb,J_tb,Jr_tb,lui_tb,aui_tb;
 logic regWrite_tb, branch_tb, opB_tb, store_tb,memToReg_tb;
 logic [1:0] immSel_tb;
 logic [1:0] opA_tb;
@@ -36,13 +36,11 @@ controlDecode controlDecode_1(
     .opA(opA_tb),
     .nextPc(nextPc_tb),
     .alu(alu_tb),
- 	.aluSel(aluSel_tb),
-  	.rst(rst_tb)
+ 	.aluSel(aluSel_tb)
 );
 
 
 initial begin
-  		rst_tb = 1;
         R_tb = 1;
         I_tb = 0;
         L_tb = 0;
