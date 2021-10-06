@@ -52,4 +52,17 @@ if (aui) begin
     assign immSel = 2'b10;
     assign alu = 3'b110;
 end
+if (lui) begin
+    assign regWrite = 1;
+    assign opA = 2'b11;
+    assign opB = 1;
+    assign immSel = 2'b10;
+end
+if (J) begin
+   assign regWrite = 1;
+   assign opA = 2'b10;
+   assign immSel = 2'b11;
+   assign nextPc = 2'b01;
+   assign aluSel = 4'b1111;
+end
 endmodule
