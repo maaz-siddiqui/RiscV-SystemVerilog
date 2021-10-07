@@ -61,10 +61,17 @@ initial begin
     opB_tb = 32'd3;
     aluOutSel_tb = 4'b0111;
     #5
-    opA_tb = 32'd8;
+  	opA_tb = 32'd8;
     opB_tb = 32'd3;
     aluOutSel_tb = 4'b1000;
+  	#5
+  	opA_tb = 32'd5;
+    opB_tb = 32'd1;
+    aluOutSel_tb = 4'b0000;
     #5
+  	opA_tb = 32'b100000000000000000000000000000100;
+    opB_tb = 32'd2;
+    aluOutSel_tb = 4'b1001;
     #40
     $finish;
     end

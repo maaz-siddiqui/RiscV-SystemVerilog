@@ -18,24 +18,24 @@ always @(*) begin
         assign aluOut = opA ^ opB; //^ is the xor operator
     end
   	if (aluOutSel == 4'b0011) begin
-        assign aluOut = opA | opB; //| is the or operator
+        assign aluOut = opA | opB; //|| is the xor operator
     end
   	if (aluOutSel == 4'b0100) begin
-        assign aluOut = opA & opB; //&&is the and operator
+        assign aluOut = opA & opB; //&& is the xor operator
     end
     if (aluOutSel == 4'b0101) begin
         if (opA < opB) begin  
-            assign aluOut = 32'd1; // lesser than logic
+            assign aluOut = 32'd1; // is the xor operator
         end
       	else assign aluOut = 32'd0;
     end
   	if (aluOutSel == 4'b0110) begin
         if (opA < opB) begin  
-            assign aluOut = 32'd1; //lesser than logic
+            assign aluOut = 32'd1; // is the xor operator
         end
       	else assign aluOut = 32'd0;
     end
-    if (aluOutSel == 4'b0111) begin //shift left logic
+  	if (aluOutSel == 4'b0111) begin //shift left logic
    		assign aluOut = opA;
       i = 0;
       while(i<opB) begin
@@ -43,13 +43,24 @@ always @(*) begin
           	i++;
       end
     end
-    if (aluOutSel == 4'b1000) begin //shift left logic
+  	if (aluOutSel == 4'b1000) begin //shift left logic
         assign aluOut = opA;
         i = 0;
         while(i<opB) begin
             assign aluOut = aluOut >> 1;
             i++;
         end
+    end
+  	if (aluOutSel == 4'b1001) begin //shift right arthematic
+        assign aluOut = opA;
+        i = 0;
+        while(i<opB) begin
+          assign aluOut = 						aluOut+32'b10000000000000000000000000000000;
+          assign aluOut = aluOut >>> 1;
+          
+            i++;
+        end
+      assign aluOut = 					aluOut+32'b10000000000000000000000000000000;
     end
 end    
 
