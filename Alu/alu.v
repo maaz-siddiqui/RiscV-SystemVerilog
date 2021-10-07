@@ -12,6 +12,12 @@ always @(*) begin
   	if (aluOutSel == 4'b0001) begin
         assign aluOut = opA-opB;
     end
+    if (aluOutSel == 4'b0010) begin
+        assign aluOut = opA ^ opB; //^ is the xor operator
+    end
+  	if (aluOutSel == 4'b0011) begin
+        assign aluOut = opA || opB; //|| is the xor operator
+    end
 end    
 
 endmodule
