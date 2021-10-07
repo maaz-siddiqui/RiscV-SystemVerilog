@@ -5,8 +5,7 @@ module alu (
     output logic [31:0] aluOut
 );
   
-  reg [31:0] shifter;
-	    	int i = 0;
+	int i = 0;
 always @(*) begin
  	if (aluOutSel == 4'b0000) begin
         assign aluOut = opA+opB;
@@ -55,12 +54,12 @@ always @(*) begin
         assign aluOut = opA;
         i = 0;
         while(i<opB) begin
-          assign aluOut = 						aluOut+32'b10000000000000000000000000000000;
+          assign aluOut = aluOut+32'b10000000000000000000000000000000;
           assign aluOut = aluOut >>> 1;
           
             i++;
         end
-      assign aluOut = 					aluOut+32'b10000000000000000000000000000000;
+      assign aluOut = aluOut+32'b10000000000000000000000000000000;
     end
 end    
 

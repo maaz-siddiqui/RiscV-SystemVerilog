@@ -52,10 +52,6 @@ initial begin
   	opA_tb = 32'd38;
     opB_tb = 32'd33;
     aluOutSel_tb = 4'b0110; 
-//   	#5
-//   	opA_tb = 32'd5;
-//     opB_tb = 32'd1;
-//     aluOutSel_tb = 4'b0000;
     #5
   	opA_tb = 32'd1;
     opB_tb = 32'd3;
