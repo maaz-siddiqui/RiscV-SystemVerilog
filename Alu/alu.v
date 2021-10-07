@@ -35,13 +35,21 @@ always @(*) begin
         end
       	else assign aluOut = 32'd0;
     end
-  if (aluOutSel == 4'b0111) begin //shift left logic
+    if (aluOutSel == 4'b0111) begin //shift left logic
    		assign aluOut = opA;
       i = 0;
       while(i<opB) begin
             assign aluOut = aluOut << 1;
           	i++;
       end
+    end
+    if (aluOutSel == 4'b1000) begin //shift left logic
+        assign aluOut = opA;
+        i = 0;
+        while(i<opB) begin
+            assign aluOut = aluOut >> 1;
+            i++;
+        end
     end
 end    
 
