@@ -1,3 +1,5 @@
+// Code your testbench here
+// or browse Examples
 // `timescale 1ns/1ns
 // `include "immGen.v"
 module immGen_tb;
@@ -6,68 +8,33 @@ initial begin
 	$dumpvars;
 end 
 
-logic [31:0] opA_tb;
-logic [31:0] opB_tb;
-logic [31:0] aluOut_tb;
-logic [3:0] aluOutSel_tb;
+  reg [31:0] Pc_tb;
+  reg [31:0] Ins_tb;
+  reg [31:0] I_imm_tb, S_imm_tb, Sb_imm_tb, Uj_imm_tb, U_imm_tb;
+  logic rst_tb;
 
 
-alu alu1(
-    .opA(opA_tb),
-    .opB(opB_tb),
-    .aluOut(aluOut_tb),
- 	.aluOutSel(aluOutSel_tb)
+immGen immGen1(
+    .Pc(Pc_tb),
+    .Ins(Ins_tb),
+    .I_imm(I_imm_tb),
+    .S_imm(S_imm_tb),
+    .Sb_imm(Sb_imm_tb),
+    .Uj_imm(Uj_imm_tb),
+  .U_imm(U_imm_tb),
+  .rst(rst_tb)
 );
 
 
 initial begin
-    opA_tb = 32'd5;
-    opB_tb = 32'd1;
-    aluOutSel_tb = 4'b0000;        
-    #5
-    opA_tb = 32'd7;
-    opB_tb = 32'd4;
-    aluOutSel_tb = 4'b0001;  
-    #5   
- 	opA_tb = 32'd1;
-    opB_tb = 32'd0;
-    aluOutSel_tb = 4'b0010; 
-    #5  
-  	opA_tb = 32'd1;
-    opB_tb = 32'd1;
-    aluOutSel_tb = 4'b0011; 
-    #5  
- 	opA_tb = 32'd38;
-    opB_tb = 32'd33;
-    aluOutSel_tb = 4'b0100; 
-    #5
-  	opA_tb = 32'd38;
-    opB_tb = 32'd33;
-    aluOutSel_tb = 4'b0101; 
-    #5
-  	opA_tb = 32'd38;
-    opB_tb = 32'd33;
-    aluOutSel_tb = 4'b0110; 
-    #5
-  	opA_tb = 32'd1;
-    opB_tb = 32'd3;
-    aluOutSel_tb = 4'b0111;
-    #5
-  	opA_tb = 32'd8;
-    opB_tb = 32'd3;
-    aluOutSel_tb = 4'b1000;
+  	rst_tb = 1;
+  	Pc_tb = 32'h00000000;  	
+  	Ins_tb = 32'h00000000;
+ 	#5
+  	rst_tb = 0;
   	#5
-  	opA_tb = 32'd5;
-    opB_tb = 32'd1;
-    aluOutSel_tb = 4'b0000;
+    Ins_tb = 32'hecf0f560;
     #5
-  	opA_tb = 32'b100000000000000000000000000000100;
-    opB_tb = 32'd2;
-    aluOutSel_tb = 4'b1001;
-    #5
-  	opA_tb = 32'b100000000000000000000000000000100;
-    opB_tb = 32'd2;
-    aluOutSel_tb = 4'b1111;
     #40
     $finish;
     end
