@@ -62,7 +62,12 @@ always @(*) begin
       assign aluOut = aluOut+32'b10000000000000000000000000000000;
     end
         assign aluOut = opA; //|| is the xor operator
-
+    if (aluOutSel == 4'b1111) begin
+        assign aluOut = opA; //|| is the xor operator
+        assign aluOut = opA; //|| is the xor operator
+        assign aluOut = opA; //|| is the xor operator
+        assign aluOut = opA; //|| is the xor operator
+    end
 end    
 
 endmodule
