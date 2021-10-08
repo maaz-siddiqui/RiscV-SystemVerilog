@@ -61,6 +61,8 @@ always @(*) begin
         end
       assign aluOut = aluOut+32'b10000000000000000000000000000000;
     end
+        assign aluOut = opA; //|| is the xor operator
+
 end    
 
 endmodule
