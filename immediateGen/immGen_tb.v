@@ -28,12 +28,12 @@ immGen immGen1(
 
 initial begin
   	rst_tb = 1;
-  	Pc_tb = 32'h00000000;  	
+  	Pc_tb = 32'h00000001;  	
   	Ins_tb = 32'h00000000;
  	#5
   	rst_tb = 0;
   	#5
-    Ins_tb = 32'hecf0f560;
+    Ins_tb = 32'h6cf0f560;
     #5
     #40
     $finish;

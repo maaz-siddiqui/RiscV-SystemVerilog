@@ -33,9 +33,9 @@ always @(*) begin
     temp6 = Ins[25+:30];
     if(Ins[31] == 1'b1) begin
       temp12 = {Ins[7],temp6,temp4,{1{1'b0}}};
-      assign Sb_imm = {temp1,temp12};
+      assign Sb_imm = {temp1,temp12} + Pc;
     end
-//     else assign Sb_imm = {Ins[31],Ins[7],temp6,temp4,{1'b0}};    
+    else assign Sb_imm = {{19'd0},Ins[31],Ins[7],temp6,temp4,{1'b0}} + Pc;    
   end
   else begin 
     assign I_imm = {zeros};    
