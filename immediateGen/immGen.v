@@ -10,8 +10,11 @@ module immGen(
   reg [3:0]temp4;
   reg [5:0]temp6;
   reg [6:0]temp7 ;
+  reg [7:0]temp8;
+  reg [9:0]temp10;
   reg [4:0]temp5;
   reg [11:0]temp12;
+  reg [19:0]temp20;
   reg [31:0]zeros = 32'd0;
 
   
@@ -35,7 +38,17 @@ always @(*) begin
       temp12 = {Ins[7],temp6,temp4,{1{1'b0}}};
       assign Sb_imm = {temp1,temp12} + Pc;
     end
-    else assign Sb_imm = {{19'd0},Ins[31],Ins[7],temp6,temp4,{1'b0}} + Pc;    
+    else assign Sb_imm = {{19'd0},Ins[31],Ins[7],temp6,temp4,{1'b0}} + Pc; 
+    //uj imm
+    temp10 = Ins[21+:30];
+    temp8 = Ins[12+:19];
+    if(Ins[31] == 1'b1) begin
+      assign Uj_imm = {{12'hfff},Ins[31],temp8,Ins[20],temp10,{1'b0}}+Pc;
+    end
+    else assign Uj_imm = {{12'h000},Ins[31],temp8,Ins[20],temp10,{1'b0}}+Pc;
+    //U_imm
+    temp20 = Ins[31-:20];
+    assign U_imm = {temp20,{12'd0}};
   end
   else begin 
     assign I_imm = {zeros};    

@@ -34,7 +34,8 @@ initial begin
   	rst_tb = 0;
   	#5
     Ins_tb = 32'h6cf0f560;
-    #5
+   	#5
+    Ins_tb = 32'hecf0f560;
     #40
     $finish;
     end
